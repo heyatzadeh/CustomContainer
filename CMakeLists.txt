@@ -3,4 +3,6 @@ project(CustomContainer)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(CustomContainer main.cpp)
+file(GLOB sourceFiles ./*.cpp)
+
+add_executable(CustomContainer ${sourceFiles})
