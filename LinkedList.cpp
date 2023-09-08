@@ -21,7 +21,7 @@ void LinkedList::display()
 {
     std::cout << "[ ";
     displayRecursive(first);
-    std::cout << "] Size: " << countRecursive();
+    std::cout << "], Size: " << countRecursive(first) << ", Sum: " << sumRecursive(first);
 }
 
 void LinkedList::displayRecursive(struct Node* first)
@@ -59,11 +59,6 @@ int LinkedList::count()
     return result;
 }
 
-int LinkedList::countRecursive()
-{
-    return countRecursive(first);
-}
-
 int LinkedList::countRecursive(struct Node* first)
 {
     if (!first)
@@ -71,4 +66,25 @@ int LinkedList::countRecursive(struct Node* first)
         return 0;
     }
     return countRecursive(first->next) + 1;
+}
+
+int LinkedList::sum()
+{
+    auto result{0};
+    auto last{first};
+    while (last)
+    {
+        result += last->data;
+        last = last->next;
+    }
+    return result;
+}
+
+int LinkedList::sumRecursive(struct Node* first)
+{
+    if (!first)
+    {
+        return 0;
+    }
+    return first->data + sumRecursive(first->next);
 }

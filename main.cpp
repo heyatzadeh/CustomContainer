@@ -3,9 +3,10 @@
 
 int main()
 {
-    int A[] = {1, 2, 3, 4, 5};
-    LinkedList linkedList(A, 5);
-    std::cout << linkedList << " Size: " << linkedList.count() << '\n';
+    int A[] = {3, 5, 7, 10, 15, 8, 12, 20};
+    LinkedList linkedList(A, std::size(A));
+    std::cout << linkedList << ", Size: " << linkedList.count()
+              << ", Sum: " << linkedList.sum() << '\n';
     linkedList.display();
     return 0;
 }
