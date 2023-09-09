@@ -16,6 +16,8 @@ public:
     int count();
     int sum();
     int max();
+    Node* LinearSearch(int target);
+    Node* LinearSearchImprove(int key);
 
     friend std::ostream& operator<<(std::ostream& out, const LinkedList& linkedList);
 
@@ -25,6 +27,7 @@ private:
     static int sumRecursive(struct Node* first);
     static int maxRecursive(struct Node* first);
     static int minRecursive(struct Node* first);
+    static Node* LinearSearchRecursive(struct Node* first, int target);
 
     Node* first;
 };

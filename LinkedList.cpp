@@ -21,7 +21,9 @@ void LinkedList::display()
 {
     std::cout << "[ ";
     displayRecursive(first);
-    std::cout << "], Size: " << countRecursive(first) << ", Sum: " << sumRecursive(first) << ", Max: " << maxRecursive(first) << ", Min: " << minRecursive(first);
+    std::cout << "], Size: " << countRecursive(first) << ", Sum: " << sumRecursive(first) << ", Max: " << maxRecursive(first) << ", Min: " << minRecursive(first) << std::endl;
+
+    std::cout << LinearSearchRecursive(first, 80)->data;
 }
 
 void LinkedList::displayRecursive(struct Node* first)
@@ -122,4 +124,51 @@ int LinkedList::minRecursive(struct Node* first)
     }
     min = minRecursive(first->next);
     return (min > first->data) ? first->data : min;
+}
+
+Node* LinkedList::LinearSearch(int target)
+{
+    auto last{first};
+    while (last)
+    {
+        if (last->data == target)
+        {
+            return last;
+        }
+        last = last->next;
+    }
+    return nullptr;
+}
+
+Node* LinkedList::LinearSearchRecursive(struct Node* first, int target)
+{
+    if (!first->next)
+    {
+        return nullptr;
+    }
+
+    if (first->data == target)
+    {
+        return first;
+    }
+
+    return LinearSearchRecursive(first->next, target);
+}
+
+Node* LinkedList::LinearSearchImprove(int key)
+{
+    auto q{first}, p{first};
+    while (p)
+    {
+        if (key == p->data)
+        {
+            q->next = p->next;
+            p->next = first;
+            first = p;
+            return first;
+        }
+        q = p;
+        p = p->next;
+    }
+    return nullptr;
 }
