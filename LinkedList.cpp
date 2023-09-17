@@ -172,3 +172,26 @@ Node* LinkedList::LinearSearchImprove(int key)
     }
     return nullptr;
 }
+
+void LinkedList::insert(int index, int value)
+{
+    auto last{first};
+    auto createdNode = new Node;
+    createdNode->data = value;
+
+    if (index == 0)
+    {
+        createdNode->next = first;
+        first = createdNode;
+        return;
+    }
+    for (int i = 0; i < index - 1 && last; i++)
+    {
+        last = last->next;
+    }
+    if (last)
+    {
+        createdNode->next = last->next;
+        last->next = createdNode;
+    }
+}

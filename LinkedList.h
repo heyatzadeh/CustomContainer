@@ -18,6 +18,7 @@ public:
     int max();
     Node* LinearSearch(int target);
     Node* LinearSearchImprove(int key);
+    void insert(int index, int value);
 
     friend std::ostream& operator<<(std::ostream& out, const LinkedList& linkedList);
 

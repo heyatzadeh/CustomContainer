@@ -7,10 +7,8 @@ int main()
     LinkedList linkedList(A, std::size(A));
     std::cout << linkedList << ", Size: " << linkedList.count()
               << ", Sum: " << linkedList.sum() << ", Max: " << linkedList.max() << '\n';
-    linkedList.display();
     std::cout << "\n---------------------------\n";
-    std::cout << linkedList.LinearSearchImprove(80) << std::endl;
+    linkedList.insert(11,85);
     std::cout << linkedList;
-    std::cout << linkedList.LinearSearchImprove(80) << std::endl;
     return 0;
 }
