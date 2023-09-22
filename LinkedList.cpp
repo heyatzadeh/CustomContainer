@@ -17,6 +17,10 @@ LinkedList::LinkedList(int* A, int size)
     }
 }
 
+LinkedList::LinkedList(std::vector<int> input) : LinkedList(input.data(), input.size())
+{
+}
+
 void LinkedList::display()
 {
     std::cout << "[ ";
@@ -49,7 +53,29 @@ std::ostream& operator<<(std::ostream& out, const LinkedList& linkedList)
     return out;
 }
 
-int LinkedList::count()
+bool LinkedList::operator==(const LinkedList& other) const
+{
+    if (count() != other.count())
+    {
+        return false;
+    }
+
+    auto p{first};
+    auto q{other.first};
+    while (p)
+    {
+        if (p->data != q->data)
+        {
+            return false;
+        }
+        p = p->next;
+        q = q->next;
+    }
+
+    return true;
+}
+
+int LinkedList::count() const
 {
     int result{0};
     auto last{first};
@@ -194,4 +220,103 @@ void LinkedList::insert(int index, int value)
         createdNode->next = last->next;
         last->next = createdNode;
     }
+}
+
+int LinkedList::remove(int index)
+{
+    auto p{first}, q{first};
+    int result = -1;
+
+    if (index < 0 || count() <= index)
+    {
+        return result;
+    }
+
+    if (index == 0)
+    {
+        first = first->next;
+        result = p->data;
+        delete p;
+    }
+
+    else
+    {
+        for (int i = 0; i < index; ++i)
+        {
+            q = p;
+            p = p->next;
+        }
+
+        q->next = p->next;
+        result = p->data;
+        delete p;
+    }
+    return result;
+}
+
+bool LinkedList::isSorted()
+{
+    auto last{first};
+    int previousData = first->data;
+
+    while (last)
+    {
+        if (previousData > last->data)
+        {
+            return false;
+        }
+        previousData = last->data;
+        last = last->next;
+    }
+    return true;
+}
+
+void LinkedList::removeOrderedDuplicate()
+{
+    auto p{first->next}, q{first};
+
+    while (p)
+    {
+        if (p->data == q->data)
+        {
+            q->next = p->next;
+            delete p;
+            p = q->next;
+        }
+
+        else
+        {
+            q = p;
+            p = p->next;
+        }
+    }
+}
+
+void LinkedList::reverse()
+{
+    // By moving elements
+    //    auto p{first}, q{first};
+    //    std::vector<int> temp;
+    //    while (p)
+    //    {
+    //        temp.push_back(p->data);
+    //        p = p->next;
+    //    }
+    //    while (q)
+    //    {
+    //        q->data = temp.back();
+    //        temp.pop_back();
+    //        q = q->next;
+    //    }
+
+    // By modifying links
+    Node *firstNode{first}, *middleNode{nullptr}, *lastNode{nullptr};
+    while (firstNode)
+    {
+        lastNode = middleNode;
+        middleNode = firstNode;
+        firstNode = firstNode->next;
+        middleNode->next = lastNode;
+    }
+    first = middleNode;
 }
