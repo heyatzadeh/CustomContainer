@@ -37,6 +37,7 @@ private:
     static int maxRecursive(struct Node* first);
     static int minRecursive(struct Node* first);
     static Node* LinearSearchRecursive(struct Node* first, int target);
+    void reverseRecursion(struct Node* node, Node* tailOfNode = nullptr);
 
     Node* first;
 };

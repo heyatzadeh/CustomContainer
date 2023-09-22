@@ -310,13 +310,30 @@ void LinkedList::reverse()
     //    }
 
     // By modifying links
-    Node *firstNode{first}, *middleNode{nullptr}, *lastNode{nullptr};
-    while (firstNode)
+    //    Node *firstNode{first}, *middleNode{nullptr}, *lastNode{nullptr};
+    //    while (firstNode)
+    //    {
+    //        lastNode = middleNode;
+    //        middleNode = firstNode;
+    //        firstNode = firstNode->next;
+    //        middleNode->next = lastNode;
+    //    }
+    //    first = middleNode;
+
+    // By using recursion
+    auto temp{first};
+    LinkedList::reverseRecursion(temp);
+}
+
+void LinkedList::reverseRecursion(struct Node* node, Node* tailOfNode)
+{
+    if (node)
     {
-        lastNode = middleNode;
-        middleNode = firstNode;
-        firstNode = firstNode->next;
-        middleNode->next = lastNode;
+        reverseRecursion(node->next, node);
+        node->next = tailOfNode;
     }
-    first = middleNode;
+    else
+    {
+        this->first = tailOfNode;
+    }
 }

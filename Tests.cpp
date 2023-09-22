@@ -57,4 +57,18 @@ TEST_CASE("reverse")
         linkedList.reverse();
         REQUIRE(linkedList == LinkedList({8, 6, 4, 2}));
     }
+
+    SECTION("Only one")
+    {
+        LinkedList linkedList({2});
+        linkedList.reverse();
+        REQUIRE(linkedList == LinkedList({2}));
+    }
+
+    SECTION("Repeated number")
+    {
+        LinkedList linkedList({2, 3, 800, 800, 800});
+        linkedList.reverse();
+        REQUIRE(linkedList == LinkedList({800, 800, 800, 3, 2}));
+    }
 }
