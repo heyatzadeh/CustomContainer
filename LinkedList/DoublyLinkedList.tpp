@@ -1,29 +1,30 @@
-#include "DoublyLinkedList.h"
-
-DoublyLinkedList::DoublyLinkedList(const int* input, int size)
+template <typename T>
+DoublyLinkedList<T>::DoublyLinkedList(const T* input, size_t size)
 {
     if (size < 1)
     {
         return;
     }
 
-    first = new Node(nullptr, nullptr, input[0]);
+    first = new Node<T>(nullptr, nullptr, input[0]);
     this->size = size;
     auto start{first};
 
     for (int i = 1; i < size; ++i)
     {
-        auto tempNode = new Node(start, nullptr, input[i]);
+        auto tempNode = new Node<T>(start, nullptr, input[i]);
         start->next = tempNode;
         start = start->next;
     }
 }
 
-DoublyLinkedList::DoublyLinkedList(std::vector<int> inputs) : DoublyLinkedList(inputs.data(), inputs.size())
+template <typename T>
+DoublyLinkedList<T>::DoublyLinkedList(std::vector<T> inputs) : DoublyLinkedList(inputs.data(), inputs.size())
 {
 }
 
-DoublyLinkedList::~DoublyLinkedList()
+template <typename T>
+DoublyLinkedList<T>::~DoublyLinkedList()
 {
     auto node{first};
 
@@ -35,7 +36,8 @@ DoublyLinkedList::~DoublyLinkedList()
     }
 }
 
-std::ostream& operator<<(std::ostream& out, const DoublyLinkedList& doublyLinkedList)
+template <typename T>
+std::ostream& operator<<(std::ostream& out, const DoublyLinkedList<T>& doublyLinkedList)
 {
     out << '[';
     auto node{doublyLinkedList.first};
@@ -49,7 +51,8 @@ std::ostream& operator<<(std::ostream& out, const DoublyLinkedList& doublyLinked
     return out;
 }
 
-bool DoublyLinkedList::operator==(const DoublyLinkedList& other) const
+template <typename T>
+bool DoublyLinkedList<T>::operator==(const DoublyLinkedList& other) const
 {
     if (size != other.size)
     {
