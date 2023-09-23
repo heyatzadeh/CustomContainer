@@ -1,6 +1,10 @@
 #include "LinkedList.h"
 
-LinkedList::LinkedList(int* A, int size)
+LinkedList::LinkedList() : first(nullptr)
+{
+}
+
+LinkedList::LinkedList(const int* A, int size)
 {
     first = new Node();
     first->data = A[0];
@@ -19,6 +23,21 @@ LinkedList::LinkedList(int* A, int size)
 
 LinkedList::LinkedList(std::vector<int> input) : LinkedList(input.data(), input.size())
 {
+}
+
+LinkedList::~LinkedList()
+{
+    if (IsLinkedListHaveLoop())
+    {
+        return;
+    }
+    auto node{first};
+    while (node)
+    {
+        first = first->next;
+        delete node;
+        node = first;
+    }
 }
 
 void LinkedList::display()

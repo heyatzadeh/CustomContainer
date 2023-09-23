@@ -12,7 +12,9 @@ struct Node
 class LinkedList
 {
 public:
-    LinkedList(int* A, int size);
+    LinkedList();
+    LinkedList(const int* A, int size);
+    ~LinkedList();
     explicit LinkedList(std::vector<int> input);
     void display();
     [[nodiscard]] int count() const;
