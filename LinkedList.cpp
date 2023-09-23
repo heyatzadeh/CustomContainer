@@ -337,3 +337,57 @@ void LinkedList::reverseRecursion(struct Node* node, Node* tailOfNode)
         this->first = tailOfNode;
     }
 }
+
+void LinkedList::concat(const LinkedList& other)
+{
+    auto node{first};
+    while (node->next)
+    {
+        node = node->next;
+    }
+    node->next = other.first;
+}
+
+void LinkedList::mergeSortedList(LinkedList& other)
+{
+    auto firstNode{first}, secondNode{other.first};
+    Node* lastNode{nullptr};
+
+    if (firstNode->data > secondNode->data)
+    {
+        first = lastNode = secondNode;
+        secondNode = secondNode->next;
+    }
+    else
+    {
+        first = lastNode = firstNode;
+        firstNode = firstNode->next;
+    }
+    lastNode->next = nullptr;
+
+    while (firstNode && secondNode)
+    {
+        if (firstNode->data > secondNode->data)
+        {
+            lastNode->next = secondNode;
+            lastNode = secondNode;
+            secondNode = secondNode->next;
+        }
+        else
+        {
+            lastNode->next = firstNode;
+            lastNode = firstNode;
+            firstNode = firstNode->next;
+        }
+        lastNode->next = nullptr;
+    }
+
+    if (firstNode)
+    {
+        lastNode->next = firstNode;
+    }
+    else
+    {
+        lastNode->next = secondNode;
+    }
+}

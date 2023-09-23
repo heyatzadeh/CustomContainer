@@ -25,6 +25,8 @@ public:
     bool isSorted();
     void removeOrderedDuplicate();
     void reverse();
+    void concat(const LinkedList& other);
+    void mergeSortedList(LinkedList& other);
 
     friend std::ostream& operator<<(std::ostream& out, const LinkedList& linkedList);
     bool operator==(const LinkedList& other) const;
