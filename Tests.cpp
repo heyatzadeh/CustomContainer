@@ -101,3 +101,43 @@ TEST_CASE("mergeSortedList")
         REQUIRE(linkedList1 == LinkedList({2, 4}));
     }
 }
+
+TEST_CASE("IsLinkedListHaveLoop")
+{
+    SECTION("LinkedList is corrupted have loop in it")
+    {
+        LinkedList linkedList({2, 8, 10, 15});
+        linkedList.first->next->next->next = linkedList.first->next;
+
+        REQUIRE(linkedList.IsLinkedListHaveLoop());
+    }
+    SECTION("Two element")
+    {
+        LinkedList linkedList({2, 8});
+        linkedList.first->next = linkedList.first;
+
+        REQUIRE(linkedList.IsLinkedListHaveLoop());
+    }
+    SECTION("Three element")
+    {
+        LinkedList linkedList({2, 8, 7});
+        linkedList.first->next->next = linkedList.first;
+
+        REQUIRE(linkedList.IsLinkedListHaveLoop());
+    }
+    SECTION("Normal list")
+    {
+        LinkedList linkedList({2, 4, 7, 8, 10, 12, 14, 15});
+        REQUIRE_FALSE(linkedList.IsLinkedListHaveLoop());
+    }
+    SECTION("Normal two element list")
+    {
+        LinkedList linkedList({4, 45});
+        REQUIRE_FALSE(linkedList.IsLinkedListHaveLoop());
+    }
+    SECTION("Normal one element list")
+    {
+        LinkedList linkedList({45});
+        REQUIRE_FALSE(linkedList.IsLinkedListHaveLoop());
+    }
+}

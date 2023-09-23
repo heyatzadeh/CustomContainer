@@ -391,3 +391,19 @@ void LinkedList::mergeSortedList(LinkedList& other)
         lastNode->next = secondNode;
     }
 }
+
+bool LinkedList::IsLinkedListHaveLoop() const
+{
+    auto oneJumper{first}, twoJumper{first->next};
+
+    while (oneJumper && twoJumper)
+    {
+        if (oneJumper == twoJumper)
+        {
+            return true;
+        }
+        oneJumper = oneJumper->next;
+        twoJumper = (twoJumper->next) ? twoJumper->next->next : nullptr;
+    }
+    return false;
+}
