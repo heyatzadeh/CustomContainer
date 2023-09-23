@@ -27,17 +27,17 @@ LinkedList::LinkedList(std::vector<int> input) : LinkedList(input.data(), input.
 
 LinkedList::~LinkedList()
 {
-    if (IsLinkedListHaveLoop())
-    {
-        return;
-    }
-    auto node{first};
-    while (node)
-    {
-        first = first->next;
-        delete node;
-        node = first;
-    }
+//    if (IsLinkedListHaveLoop())
+//    {
+//        return;
+//    }
+//    auto node{first};
+//    while (node)
+//    {
+//        first = first->next;
+//        delete node;
+//        node = first;
+//    }
 }
 
 void LinkedList::display()

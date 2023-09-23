@@ -3,7 +3,7 @@ project(CustomContainer)
 
 set(CMAKE_CXX_STANDARD 20)
 
-file(GLOB sourceFiles ./*.cpp Catch/catch_amalgamated.cpp)
+file(GLOB sourceFiles ./*/*.cpp)
 
 include_directories(Catch)
 
