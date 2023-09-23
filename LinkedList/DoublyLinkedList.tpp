@@ -1,13 +1,12 @@
 template <typename T>
 DoublyLinkedList<T>::DoublyLinkedList(const T* input, size_t size)
 {
-    if (size < 1)
+    if (size == 0)
     {
         return;
     }
 
     first = new Node<T>(nullptr, nullptr, input[0]);
-    this->size = size;
     auto start{first};
 
     for (int i = 1; i < size; ++i)
@@ -54,7 +53,7 @@ std::ostream& operator<<(std::ostream& out, const DoublyLinkedList<T>& doublyLin
 template <typename T>
 bool DoublyLinkedList<T>::operator==(const DoublyLinkedList& other) const
 {
-    if (size != other.size)
+    if (size() != other.size())
     {
         return false;
     }
@@ -69,4 +68,47 @@ bool DoublyLinkedList<T>::operator==(const DoublyLinkedList& other) const
         secondNode = secondNode->next;
     }
     return true;
+}
+
+template <typename T>
+size_t DoublyLinkedList<T>::size() const
+{
+    auto node{first};
+    size_t counter = 0;
+    while (node)
+    {
+        counter++;
+        node = node->next;
+    }
+    return counter;
+}
+
+template <typename T>
+void DoublyLinkedList<T>::insert(size_t index, T value)
+{
+    if (index == 0)
+    {
+        auto tempNode = new Node<T>(nullptr, first, value);
+        if (first)
+        {
+            first->previous = tempNode;
+        }
+        first = tempNode;
+    }
+
+    auto node{first};
+    ;
+    for (int i = 0; i < index - 1 && node; ++i)
+    {
+        node = node->next;
+    }
+    if (node)
+    {
+        auto tempNode = new Node<T>(node, node->next, value);
+        if (node->next)
+        {
+            node->next->previous = tempNode;
+        }
+        node->next = tempNode;
+    }
 }

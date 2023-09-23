@@ -19,6 +19,9 @@ public:
     explicit DoublyLinkedList(std::vector<T> inputs);
     ~DoublyLinkedList();
 
+    void insert(size_t index, T value);
+    [[nodiscard]] size_t size() const;
+
     bool operator==(const DoublyLinkedList& other) const;
 
 private:
@@ -26,7 +29,6 @@ private:
     friend std::ostream& operator<<(std::ostream& out, const DoublyLinkedList<P>& doublyLinkedList);
 
     Node<T>* first = nullptr;
-    size_t size = 0;
 };
 
 template <typename T>
