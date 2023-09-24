@@ -112,3 +112,39 @@ void DoublyLinkedList<T>::insert(size_t index, T value)
         node->next = tempNode;
     }
 }
+
+template <typename T>
+T DoublyLinkedList<T>::remove(size_t index)
+{
+    if (index == 0)
+    {
+        auto node{first->next};
+        auto result{first->data};
+        delete first;
+        if (node)
+        {
+            node->previous = nullptr;
+        }
+        first = node;
+        return result;
+    }
+
+    Node<T>* node{first};
+
+    for (int i = 0; i < index && node; ++i)
+    {
+        node = node->next;
+    }
+    if (node)
+    {
+        node->previous->next = node->next;
+        if (node->next)
+        {
+            node->next->previous = node->previous;
+        }
+        auto result = node->data;
+        delete node;
+        return result;
+    }
+    return -1;
+}

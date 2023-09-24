@@ -20,6 +20,7 @@ public:
     ~DoublyLinkedList();
 
     void insert(size_t index, T value);
+    T remove (size_t index);
     [[nodiscard]] size_t size() const;
 
     bool operator==(const DoublyLinkedList& other) const;

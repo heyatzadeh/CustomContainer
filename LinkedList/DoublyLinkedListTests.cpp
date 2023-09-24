@@ -83,3 +83,37 @@ TEST_CASE("insert")
         REQUIRE(list == DoublyLinkedList<int>({1, 2, 3, 4, 10, 5}));
     }
 }
+
+TEST_CASE("remove")
+{
+    SECTION("remove at first index")
+    {
+        DoublyLinkedList<int> list({1, 2, 3, 4, 5});
+        REQUIRE(list.remove(0) == 1);
+        REQUIRE(list == DoublyLinkedList<int>({2, 3, 4, 5}));
+    }
+    SECTION("remove at first index with one element")
+    {
+        DoublyLinkedList<int> list({1});
+        REQUIRE(list.remove(0) == 1);
+        REQUIRE(list == DoublyLinkedList<int>({}));
+    }
+    SECTION("remove at some index")
+    {
+        DoublyLinkedList<int> list({1, 2, 3, 4, 5});
+        REQUIRE(list.remove(3) == 4);
+        REQUIRE(list == DoublyLinkedList<int>({1, 2, 3, 5}));
+    }
+    SECTION("remove last index")
+    {
+        DoublyLinkedList<int> list({1, 3});
+        REQUIRE(list.remove(1) == 3);
+        REQUIRE(list == DoublyLinkedList<int>({1}));
+    }
+    SECTION("remove second last index")
+    {
+        DoublyLinkedList<int> list({1, 2, 3});
+        REQUIRE(list.remove(1) == 2);
+        REQUIRE(list == DoublyLinkedList<int>({1, 3}));
+    }
+}
