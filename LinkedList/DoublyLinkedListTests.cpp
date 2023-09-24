@@ -145,3 +145,48 @@ TEST_CASE("DoublyLinkedList reverse")
         REQUIRE(list == DoublyLinkedList<int>({2, 1}));
     }
 }
+
+TEST_CASE("DoublyLinkedList combine methods")
+{
+    DoublyLinkedList<int> list({1, 2});
+    list.insert(2, 3);
+    list.insert(3, 4);
+    REQUIRE(list == DoublyLinkedList<int>({1, 2, 3, 4}));
+    list.reverse();
+    REQUIRE(list == DoublyLinkedList<int>({4, 3, 2, 1}));
+    list.insert(0, 5);
+    list.remove(4);
+    list.remove(0);
+    list.reverse();
+    list.remove(1);
+    list.remove(1);
+    list.remove(1);
+    list.insert(1, 10);
+    list.remove(0);
+    list.reverse();
+    REQUIRE(list == DoublyLinkedList<int>({10}));
+}
+
+TEST_CASE("DoublyLinkedList middle")
+{
+    SECTION("Two element list")
+    {
+        DoublyLinkedList<int> list({1, 2});
+        REQUIRE(list.middle() == 1);
+    }
+    SECTION("One element list")
+    {
+        DoublyLinkedList<int> list({1});
+        REQUIRE(list.middle() == 1);
+    }
+    SECTION("Odd element list")
+    {
+        DoublyLinkedList<int> list({1, 2, 3, 4, 5, 6, 7});
+        REQUIRE(list.middle() == 4);
+    }
+    SECTION("Even element list")
+    {
+        DoublyLinkedList<int> list({1, 2, 3, 4});
+        REQUIRE(list.middle() == 2);
+    }
+}

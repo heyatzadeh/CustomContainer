@@ -161,3 +161,16 @@ void DoublyLinkedList<T>::reverse()
     }
     first = node;
 }
+
+template <typename T>
+T DoublyLinkedList<T>::middle() const
+{
+    auto oneNodeJumper{first}, twoNodeJumper{first};
+    while (twoNodeJumper->next && twoNodeJumper->next->next)
+    {
+        oneNodeJumper = oneNodeJumper->next;
+        twoNodeJumper = twoNodeJumper->next->next;
+    }
+
+    return oneNodeJumper->data;
+}

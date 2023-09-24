@@ -23,6 +23,7 @@ public:
     T remove (size_t index);
     [[nodiscard]] size_t size() const;
     void reverse();
+    T middle() const;
 
     bool operator==(const DoublyLinkedList& other) const;
 
