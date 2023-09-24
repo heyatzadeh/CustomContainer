@@ -22,6 +22,7 @@ public:
     void insert(size_t index, T value);
     T remove (size_t index);
     [[nodiscard]] size_t size() const;
+    void reverse();
 
     bool operator==(const DoublyLinkedList& other) const;
 

@@ -117,3 +117,31 @@ TEST_CASE("remove")
         REQUIRE(list == DoublyLinkedList<int>({1, 3}));
     }
 }
+
+TEST_CASE("DoublyLinkedList reverse")
+{
+    SECTION("Normal list")
+    {
+        DoublyLinkedList<int> list({1, 2, 3, 4, 5});
+        list.reverse();
+        REQUIRE(list == DoublyLinkedList<int>({5, 4, 3, 2, 1}));
+    }
+    SECTION("zero element list")
+    {
+        DoublyLinkedList<int> list({});
+        list.reverse();
+        REQUIRE(list == DoublyLinkedList<int>({}));
+    }
+    SECTION("one element list")
+    {
+        DoublyLinkedList<int> list({1});
+        list.reverse();
+        REQUIRE(list == DoublyLinkedList<int>({1}));
+    }
+    SECTION("two element list")
+    {
+        DoublyLinkedList<int> list({1, 2});
+        list.reverse();
+        REQUIRE(list == DoublyLinkedList<int>({2, 1}));
+    }
+}

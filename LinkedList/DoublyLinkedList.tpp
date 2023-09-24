@@ -148,3 +148,16 @@ T DoublyLinkedList<T>::remove(size_t index)
     }
     return -1;
 }
+
+template <typename T>
+void DoublyLinkedList<T>::reverse()
+{
+    auto node{first};
+    while (first)
+    {
+        node = first;
+        first = first->next;
+        std::swap(node->previous, node->next);
+    }
+    first = node;
+}
